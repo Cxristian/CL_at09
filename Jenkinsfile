@@ -1,30 +1,46 @@
 pipeline {
-    agent any
+    agent any 
     stages {
-        stage('Build') {
+        stage('Assemble') { 
             steps {
-                sh './quickstart/gradlew build --console verbose -p quickstart/'
+                echo 'Compiling.'
+                sh './quickstart/gradlew assemble -p quickstart'
+                archiveArtifacts 'quickstart/build/libs/*.jar'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
+        stage('Tests') {
+            parallel {
+                stage('Unit Tests 1') { 
+                    steps {
+                        echo 'Executing Unit Tests.'
+                        sh './quickstart/gradlew test -p quickstart/'
+                    }
+                    post {
+                        always {
+                            junit "quickstart/build/test-results/test/*.xml"
+                            archiveArtifacts 'quickstart/build/reports/tests/test/*'
+                        }
+                    }
+                }
+                stage('Unit Tests 2') { 
+                    steps {
+                        echo 'Executing Unit Tests.'
+                        sh './quickstart/gradlew test -p quickstart/'
+                    }
+                }
             }
         }
-        stage('Deploy') {
+        
+        stage('Deploy') { 
             steps {
-                echo 'Deploying....'
+                echo 'Deploying.'
             }
         }
-        stage('Assemble') {
-            steps {
-                sh './quickstart/gradlew assemble -p quickstart/'
-            }
-        }
-        stage('Unit_Test') {
-            steps {
-                sh './gradlew test'
-            }
+    }
+
+    post {
+        always {
+            echo 'This is a post action.'
         }
     }
 }
