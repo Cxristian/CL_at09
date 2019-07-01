@@ -1,5 +1,8 @@
 plugins {
     id 'java'
+    id 'pmd'
+    id 'checkstyle'
+    id 'findbugs'
 }
 
 apply plugin: 'java'

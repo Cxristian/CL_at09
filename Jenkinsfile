@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Assemble') { 
             steps {
-                echo 'Compiling.'
+                echo 'Compiling...'
                 sh './quickstart/gradlew assemble -p quickstart'
                 archiveArtifacts 'quickstart/build/libs/*.jar'
             }
@@ -12,7 +12,7 @@ pipeline {
             parallel {
                 stage('Unit Tests 1') { 
                     steps {
-                        echo 'Executing Unit Tests.'
+                        echo 'Executing Unit Test 1.'
                         sh './quickstart/gradlew test -p quickstart/'
                     }
                     post {
@@ -24,13 +24,13 @@ pipeline {
                 }
                 stage('Unit Tests 2') { 
                     steps {
-                        echo 'Executing Unit Tests.'
+                        echo 'Executing Unit Test 2.'
                         sh './quickstart/gradlew test -p quickstart/'
                     }
                 }
             }
         }
-        
+
         stage('Deploy') { 
             steps {
                 echo 'Deploying.'
@@ -41,6 +41,7 @@ pipeline {
     post {
         always {
             echo 'This is a post action.'
+            emailext body: 'A Test EMail', subject: 'Test', to: 'cristian.lujan@fundacion-jala.org
         }
     }
 }
