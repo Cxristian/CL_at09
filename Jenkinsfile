@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh './quickstart/gradlew build --console verbose -p quickstart/'
             }
         }
         stage('Test') {
@@ -14,6 +14,16 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+            }
+        }
+        stage('Assemble') {
+            steps {
+                sh './quickstart/gradlew assemble -p quickstart/'
+            }
+        }
+        stage('Unit_Test') {
+            steps {
+                sh './gradlew test'
             }
         }
     }
