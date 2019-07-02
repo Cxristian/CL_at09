@@ -1,8 +1,14 @@
 plugins {
     id 'java'
+    id 'pmd'
+    id 'checkstyle'
+    id 'findbugs'
 }
 
 apply plugin: 'java'
+apply plugin: 'pmd'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
 
 version = '2.1'
 
