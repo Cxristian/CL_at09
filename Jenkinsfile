@@ -42,9 +42,8 @@ pipeline {
         always {
             echo 'This is a post action.'
             mail to: 'Cristian.lujan@fundacion-jala.org',
-             subject: "Test Pipeline: ${currentBuild.fullDisplayName}",
-             body: "The pipeline ${currentBuild.fullDisplayName} completed successfully.",
-             message: "Test of Email"
+                 subject: "Test Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
         }
     }
 }
