@@ -41,7 +41,10 @@ pipeline {
     post {
         always {
             echo 'This is a post action.'
-            emailext body: 'A Test EMail', subject: 'Test', to: 'cristian.lujan@fundacion-jala.org
+            mail to: 'Cristian.lujan@fundacion-jala.org',
+             subject: "Test Pipeline: ${currentBuild.fullDisplayName}",
+             body: "The pipeline ${currentBuild.fullDisplayName} completed successfully.",
+             message: "Test of Email"
         }
     }
 }
