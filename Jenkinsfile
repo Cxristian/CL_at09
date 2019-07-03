@@ -33,14 +33,13 @@ pipeline {
 
         stage('Checks') { 
             steps {
-                echo 'Deploying.'
-            }
+                echo 'Executing Checks.'
+                sh './quickstart/gradlew check -p quickstart/'
         }
 
         stage('Deploy') { 
             steps {
-                echo 'Executing Checks.'
-                sh './quickstart/gradlew check -p quickstart/'
+                echo 'Deploying.'
             }
         }
     }
