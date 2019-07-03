@@ -7,9 +7,6 @@ plugins {
 }
 
 apply plugin: 'java'
-apply plugin: 'pmd'
-apply plugin: 'checkstyle'
-apply plugin: 'findbugs'
 
 version = '2.1'
 
@@ -41,9 +38,3 @@ task task2 ( dependsOn: 'task1') {
         println "This is another task."
     }
 }
-
-checkstyle {
-    toolVersion '7.8.1'
-    configFile file("config/checkstyle/checkstyle.xml")
-}
-
