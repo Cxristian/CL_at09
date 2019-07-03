@@ -9,7 +9,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'pmd'
 apply plugin: 'checkstyle'
-apply plugin: 'findbugs
+apply plugin: 'findbugs'
 
 version = '2.1'
 
