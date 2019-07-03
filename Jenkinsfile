@@ -31,9 +31,16 @@ pipeline {
             }
         }
 
-        stage('Deploy') { 
+        stage('Checks') { 
             steps {
                 echo 'Deploying.'
+            }
+        }
+
+        stage('Deploy') { 
+            steps {
+                echo 'Executing Checks.'
+                sh './quickstart/gradlew check -p quickstart/'
             }
         }
     }
