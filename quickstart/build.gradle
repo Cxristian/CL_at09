@@ -1,14 +1,15 @@
 plugins {
     id 'java'
     id 'pmd'
-    id 'checkstyle'
     id 'findbugs'
+    id 'checkstyle'
+    id "org.sonarqube" version "2.7"
 }
 
 apply plugin: 'java'
 apply plugin: 'pmd'
-apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
 
 version = '2.1'
 
@@ -39,4 +40,15 @@ task task2 ( dependsOn: 'task1') {
     doLast {
         println "This is another task."
     }
+}
+
+checkstyle {
+    toolVersion '7.8.1'
+    configFile file("config/checkstyle/checkstyle.xml")
+}
+checkstyleMain {
+    source ='src/main/java/org/gradle'
+}
+checkstyleTest {
+    source ='src/test/java/org/gradle'
 }
