@@ -46,9 +46,8 @@ checkstyle {
     toolVersion '7.8.1'
     configFile file("config/checkstyle/checkstyle.xml")
 }
-checkstyleMain {
-    source ='src/main/java/org/gradle'
-}
-checkstyleTest {
-    source ='src/test/java/org/gradle'
+
+findbugs {
+    ignoreFailures = false
+    toolVersion = "3.0.1"
 }
