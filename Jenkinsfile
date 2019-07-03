@@ -35,6 +35,7 @@ pipeline {
             steps {
                 echo 'Executing Checks.'
                 sh './quickstart/gradlew check -p quickstart/'
+            }
         }
 
         stage('Deploy') { 
